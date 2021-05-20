@@ -18,7 +18,8 @@ if [[ $AUTO_SETUP -eq 1 ]]; then
         --user-firstname="John" \
         --user-lastname="Doe" \
         --user-password="artifakt123" \
-        --application-url="$AUTO_SETUP_DOMAIN"
+        --application-url="$AUTO_SETUP_DOMAIN" \
+        --organization-name="Artifakt"
 
         sudo service supervisord restart
     fi
