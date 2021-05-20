@@ -2,9 +2,6 @@
 
 if [[ $AUTO_SETUP -eq 1 ]]; then
  if [[ -z $AUTO_SETUP_DOMAIN ]]; then
-
-    # Delete all tables
-    
         php bin/console oro:install \
         --env=prod \
         --timeout=600 \
