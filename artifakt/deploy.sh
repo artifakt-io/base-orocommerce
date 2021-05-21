@@ -25,7 +25,7 @@
         --organization-name="Artifakt"
 
 
-        if [[ -z $AUTO_SETUP_SAMPLE_DATA ]]; then
+        if [[ $AUTO_SETUP_SAMPLE_DATA -eq 1 ]]; then
             php bin/console oro:migration:data:load --fixtures-type=demo --env=prod
         fi
 
