@@ -20,6 +20,11 @@
         --application-url="$AUTO_SETUP_DOMAIN" \
         --organization-name="Artifakt"
 
+
+        if [[ -z $AUTO_SETUP_SAMPLE_DATA ]]; then
+            php bin/console oro:migration:data:load --fixtures-type=demo --env=prod
+        fi
+
         sudo service supervisord restart
     fi
 else
