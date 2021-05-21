@@ -1,6 +1,5 @@
 #!/bin/sh
 
-if [[ $AUTO_SETUP -eq 1 ]]; then
  if [[ ! -z $AUTO_SETUP_DOMAIN ]]; then
     if [[ $ARTIFAKT_IS_MAIN_INSTANCE -eq 1 ]]; then
         sed -i "s/installed: true/installed: false/g" config/parameters.yml
@@ -25,5 +24,4 @@ if [[ $AUTO_SETUP -eq 1 ]]; then
     fi
 else
     echo "To start auto setup please add an environment variable AUTO_SETUP_DOMAIN with the full domain url (with a slash at the end)"
- fi
 fi
