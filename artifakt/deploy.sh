@@ -2,6 +2,10 @@
 
  if [[ ! -z $AUTO_SETUP_DOMAIN ]]; then
     if [[ $ARTIFAKT_IS_MAIN_INSTANCE -eq 1 ]]; then
+
+        echo "Removing tables"
+        mysql -u $ARTIFAKT_MYSQL_USER -h $ARTIFAKT_MYSQL_HOST $ARTIFAKT_MYSQL_DATABASE_NAME -p$MYSQL_PASSWORD < clearTables.sql
+
         sed -i "s/installed: true/installed: false/g" config/parameters.yml
         echo "Removing cache folder"
         sudo rm -rf var/cache/*
