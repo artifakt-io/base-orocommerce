@@ -2,7 +2,7 @@
 
 if [[ ! -z $AUTO_SETUP_DOMAIN ]]; then
     if [[ $ARTIFAKT_IS_MAIN_INSTANCE -eq 1 ]]; then
-        sudo echo "1" >> /mnt/shared/auto_setup
+        sudo touch /mnt/shared/auto_setup
     fi
 else
     if [[ -f "/mnt/shared/auto_setup" ]]; then
