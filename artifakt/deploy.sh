@@ -22,12 +22,8 @@
         --user-lastname="Doe" \
         --user-password="artifakt123" \
         --application-url="$AUTO_SETUP_DOMAIN" \
-        --organization-name="Artifakt"
-
-
-        if [[ $AUTO_SETUP_SAMPLE_DATA -eq 1 ]]; then
-            php bin/console oro:migration:data:load --fixtures-type=demo --env=prod
-        fi
+        --organization-name="Artifakt" \
+        --sample-data=y
 
         sudo service supervisord restart
     fi
