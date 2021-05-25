@@ -45,8 +45,6 @@
             fi
         done
 
-        
-
         . artifakt/orocommands.sh
     fi
 else
