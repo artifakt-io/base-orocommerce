@@ -5,5 +5,7 @@ if [[ ! -z $AUTO_SETUP_DOMAIN ]]; then
         sudo echo "1" >> /mnt/shared/auto_setup
     fi
 else
-    sudo rm /mnt/shared/auto_setup
+    if [[ -f "/mnt/shared/auto_setup" ]]; then
+        sudo rm /mnt/shared/auto_setup
+    fi
 fi
