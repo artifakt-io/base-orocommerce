@@ -2,7 +2,7 @@
 
  if [[ ! -z $AUTO_SETUP_DOMAIN ]]; then
     if [[ $ARTIFAKT_IS_MAIN_INSTANCE -eq 1 ]]; then
-        sudo touch /mnt/shared/auto_setup
+        sudo echo "1" >> /mnt/shared/auto_setup
         echo "Removing tables"
         mysql -u $ARTIFAKT_MYSQL_USER -h $ARTIFAKT_MYSQL_HOST $ARTIFAKT_MYSQL_DATABASE_NAME -p$MYSQL_PASSWORD < artifakt/clearTables.sql
 
