@@ -2,7 +2,7 @@
 
  if [[ ! -z $AUTO_SETUP_DOMAIN ]]; then
     if [[ $ARTIFAKT_IS_MAIN_INSTANCE -eq 1 ]]; then
-
+        sudo touch /mnt/shared/auto_setup
         echo "Removing tables"
         mysql -u $ARTIFAKT_MYSQL_USER -h $ARTIFAKT_MYSQL_HOST $ARTIFAKT_MYSQL_DATABASE_NAME -p$MYSQL_PASSWORD < artifakt/clearTables.sql
 
@@ -10,6 +10,7 @@
         echo "Removing cache folder"
         sudo rm -rf var/cache
 
+        
         echo "Starting installation with login: admin@example.com, password artifakt123 and domain $AUTO_SETUP_DOMAIN"
         php bin/console oro:install \
         --env=prod \
@@ -25,9 +26,27 @@
         --organization-name="Artifakt" \
         --drop-table \
         --sample-data=y
+        
+        sudo rm /mnt/shared/auto_setup
 
         sudo service supervisord restart
     else
+        echo "Waiting 30 seconds waiting if the setup script is running"
+        sleep 30
+        continue=1
+        while [ $continue -eq 1 ]
+        do
+            if [[ -f "/mnt/shared/auto_setup" ]]; then
+                echo "/mnt/shared/auto_setup exists, waiting for setup to be finished"
+                sleep 5
+            else
+                echo "File auto_setup doesn't exists, starting commands"
+                continue=0
+            fi
+        done
+
+        
+
         . artifakt/orocommands.sh
     fi
 else
