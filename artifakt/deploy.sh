@@ -24,7 +24,7 @@
         --user-password="artifakt123" \
         --application-url="$AUTO_SETUP_DOMAIN" \
         --organization-name="Artifakt" \
-        --drop-table \
+        --drop-database \
         --sample-data=y
         
         sudo rm /mnt/shared/auto_setup
