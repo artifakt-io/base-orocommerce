@@ -30,9 +30,14 @@
         fi
 
         sudo service supervisord restart
-    else
-        node ./node_modules/webpack/bin/webpack.js --hide-modules --mode=production --env.symfony=#{node[:stack][:mode]} --colors
     fi
 else
     echo "To start auto setup please add an environment variable AUTO_SETUP_DOMAIN with the full domain url (with a slash at the end)"
+    php bin/console oro:translation:load
+
+    php bin/console oro:search:reindex
+
+    php bin/console oro:website-search:reindex
+
+    php bin/console oro:assets:install
 fi
