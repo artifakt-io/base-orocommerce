@@ -31,7 +31,7 @@ else
     echo "To start auto setup please add an environment variable AUTO_SETUP_DOMAIN with the full domain url (with a slash at the end)"
     
 fi
-
+composer install
 php bin/console oro:cron:message-queue:cleanup
 php bin/console oro:cron:message-queue:consumer_heartbeat_check
 php bin/console oro:cron:email-body-sync
